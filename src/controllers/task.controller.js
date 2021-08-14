@@ -3,10 +3,11 @@ const model = require('../database/models/index');
 const createTask = async (req,res) =>{
   const { userId } = req; 
   const user = await model.User.findByPk(userId); 
-  const { name, description, startDate, expirationDate } = req.body;
-  await model.Task.create({ name, description, startDate, expirationDate, UserId: userId }).then(
+  const { name, description, creationDate, expirationDate } = req.body;
+  await model.Task.create({ name, description, creationDate, expirationDate, UserId: userId }).then(
     async (createdTask) => {
-      await createdTask.setUser(user); 
+      const { name, description, creationDate, expirationDate, UserId} = await createdTask.setUser(user); 
+      createdTask = { name, description, creationDate, expirationDate, UserId}
       return res.status(201).json({ createdTask });
     },
   );

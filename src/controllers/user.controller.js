@@ -1,8 +1,25 @@
 const model = require('../database/models/index')
+const bcrypt = require('bcryptjs')
 
+// this method should be removed because it shouldn't works from an authenticated user session, 
+// unless the requirements allows users and admin to create accounts for example. Need to review here and in 
+// auth.register
 const createUser = async (req,res)=>{
-    const data = req.body;
-    const inserted = await model.User.create(data);
+
+    let { username, password, firstName, lastName, email, phone } = req.body;
+    const checkExist = await model.User.findOne({ where: { username: username } });
+    if (checkExist) {
+        return res.status(401).send({ message: 'Username exists' });
+    }
+    ({ username, firstName, lastName, email, phone }= await model.User.create({
+        firstName,
+        lastName,
+        phone,
+        email,
+        password: bcrypt.hashSync(password, 8),
+        username,
+      }))
+    const inserted= { username, firstName, lastName, email, phone }
     return res.status(201).json({inserted})
 }
 
