@@ -9,16 +9,30 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-     static associate(models) {
-        Task.belongsTo(models.User)
-      }
-  };
+    static associate(models) {
+      Task.belongsTo(models.User)
+    }
+  }
   Task.init({
-    name: DataTypes.STRING,
-    creationDate: DataTypes.DATE,
-    expirationDate: DataTypes.DATE,
-    description: DataTypes.STRING,
-    completed: DataTypes.BOOLEAN,
+    name: {
+      type:DataTypes.STRING,
+      allowNull: false,
+    },
+    creationDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date()
+    },
+    expirationDate: {
+      type: DataTypes.DATE,
+    },
+    description: {
+      type: DataTypes.STRING
+    },
+    completed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   }, {
     sequelize,
     modelName: 'Task',

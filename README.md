@@ -50,6 +50,4 @@ If not, it responses that token is invalid
 
 VER LO DEL USERNAME
 
-name:string,creationDate:date,endDate:date,description:string,completed:boolean
-nombre de la tarea, fecha de creación, fecha de vencimiento, descripción, completada (true o false
 

@@ -14,8 +14,7 @@ const check = (req, res, next) => {
           message: "Invalid token",
         });
       }
-      req.userId = decoded.id;
-      console.log(decoded.id)
+      req.userId = decoded.id; //aca setea el userId
       next();
     });
   } catch (err) {

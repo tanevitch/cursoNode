@@ -1,25 +1,25 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, DataTypes) => {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(
       "Tasks",
       [
         {
-          name: "Task 1",
+          name: "Heroku",
           description: "learn to use heroku",
           creationDate: new Date(),
-          expirationDate: new Date(parseInt("2020"),parseInt("12"),parseInt("31")),
+          expirationDate: "2021-09-01",
           UserId: 1,
           completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "Task 2",
+          name: "JS",
           description: "learn to use javascript",
-          creationDate: new Date(),
-          expirationDate: new Date(parseInt("2020"),parseInt("01"),parseInt("01")),
+          creationDate: "2020-12-31",
+          expirationDate: "2021-02-01",
           UserId: 2,
           completed: true,
           createdAt: new Date(),
