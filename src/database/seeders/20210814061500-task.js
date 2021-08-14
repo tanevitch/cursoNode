@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface, DataTypes) => {
     await queryInterface.bulkInsert(
       "Tasks",
       [
@@ -11,6 +11,7 @@ module.exports = {
           creationDate: new Date(),
           expirationDate: new Date(parseInt("2020"),parseInt("12"),parseInt("31")),
           UserId: 1,
+          completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -20,6 +21,7 @@ module.exports = {
           creationDate: new Date(),
           expirationDate: new Date(parseInt("2020"),parseInt("01"),parseInt("01")),
           UserId: 2,
+          completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
