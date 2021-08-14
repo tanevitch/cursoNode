@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     expirationDate: DataTypes.DATE,
     description: DataTypes.STRING,
     completed: DataTypes.BOOLEAN,
-    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Task',

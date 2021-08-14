@@ -7,7 +7,9 @@ const createUser = async (req,res)=>{
 }
 
 const readUsers = async (req,res) =>{
-    const users = await model.User.findAll({attributes: ['firstName', 'lastName', 'email', 'phone', 'id']})
+    const users = await model.User.findAll({
+        include: [{ model: model.Task }],
+      });
     return res.status(200).json({users})
 }
 
