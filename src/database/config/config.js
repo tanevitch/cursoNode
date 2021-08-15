@@ -18,8 +18,9 @@ module.exports = {
     dialect: "postgres",
     dialectOptions: {
       ssl: {
-        required: false,
+        required: true,
         rejectUnauthorized: false,
+        sslfactory: org.postgresql.ssl.NonValidatingFactory
       },
     },
   },
