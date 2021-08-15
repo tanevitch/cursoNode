@@ -56,6 +56,8 @@ Response:
   If you dont send credentials, it will show "Empty field" 
 ```
 
+---
+
 - **Users**
 
 **GET**
@@ -129,6 +131,8 @@ Response:
   it responses "Username exists"
   If you send the token, and it isn't valid, it responses "Invalid token" 
 ```
+
+---
 
 - **Tasks**
 
