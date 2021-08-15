@@ -1,53 +1,170 @@
-GET
-localhost:3000/
-shows a "hi"
+# Base template 
 
-localhost:3000/api/v1.0/users
-If you dont send the token, it responses "Token required"
-If you send the token, and it is valid, you will get the list of all users (GET a /users)
-If you send the token, and it isn't valid, it responses "Invalid token"
+This project is part of a submission for a final test
 
-Token will be valid for 2 hours.
+## Requirements📋
+- Postman (or any frontend that allows to consume the api)
 
-POST
-localhost:3000/auth/login
-{
-    "username": "juanperez",
-    "password": "123456"
-}
-Should response the user's data and the token needed for the other requests
+## How to test endpoints 🚀
 
-If you make a mistake in credentials, it will show "invalid credentials"
-If you dont send credentials, it will show "Empty field"
+Request: GET https://entrega-node-1.herokuapp.com/
 
-localhost:3000/auth/register
-If you dont send credentials, it will show "Empty field"
+Response: "Hi!"
 
-{
-    "username": "juanperez",
-    "password": "123456"
-}
-If the username exists in database, it responses "Username exists"
+- **Authentication**
 
-{
-    "firstName": "Marcos",
-    "lastName": "Lopez",
-    "phone": "221-333-3333",
-    "email": "marcos@lopez.com",
+**REGISTER**
+
+Request:
+``` javascript
+ {
+    "firstName": "Juan",
+    "lastName": "Perez",
+    "phone": "221-222-2222",
+    "email": "juan@perez.com",
     "password": "123456",
-    "username":"marcoslopez"
+    "username":"juanperez"
 }
-If there isn't any user with the username setted, it responses the token
+    
+ POST https://entrega-node-1.herokuapp.com/auth/register
+```
 
-PUT
-localhost:3000/api/v1.0/users/2	
+Response:  
+```   
+ If the username exists in database, it responses "Username exists"
+ If you dont send credentials, it will show "Empty field"
+ If there isn't any user with the username setted, it responses the token
+ Token will be valid for 2 hours
+``` 
+
+**LOGIN**
+
+Request:
+```javascript
+ {
+    "username": "marcoslopez",
+    "password": "123456"
+ }
+    
+ POST https://entrega-node-1.herokuapp.com/auth/login
+```
+
+Response:  
+ ```   
+  If you use the JSON body, it responses with the token
+  If you make a mistake in credentials, it will show "Invalid credentials"
+  If you dont send credentials, it will show "Empty field" 
+```
+
+- **Users**
+
+**GET**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ GET https://entrega-node-1.herokuapp.com/api/v1.0/users
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the list of all users
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
+**PUT**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ {
+    "phone": "221-111-1111"
+ } 
+
+ PUT https://entrega-node-1.herokuapp.com/api/v1.0/users/PUT_ID_HERE
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the user with the updated fields
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
+**DELETE**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ DELETE https://entrega-node-1.herokuapp.com/api/v1.0/users/PUT_ID_HERE
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the list of all users 
+excepting the deleted
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
+**CREATE**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
 {
-    "phone": "221-222-2222"
+    "firstName": "Juan",
+    "lastName": "Perez",
+    "phone": "221-222-2222",
+    "email": "juan@perez.com",
+    "password": "123456",
+    "username":"juanperez"
 }
+ POST https://entrega-node-1.herokuapp.com/api/v1.0/users
+```
 
-If token is valid, is updated succefully
-If not, it responses that token is invalid
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, and the username already doesn't exists, 
+  you will get the list of all users including the inserted
+  If you send the token, and it is valid, and the username already exists, 
+  it responses "Username exists"
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
 
-VER LO DEL USERNAME
+- **Tasks**
 
+**GET**
 
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ GET https://entrega-node-1.herokuapp.com/api/v1.0/tasks
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the list of all tasks
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
+**CREATE**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ { 
+    "name": "Github",
+    "description": "push project to github",
+    "expirationDate": "2021-08-18"
+ }
+ POST https://entrega-node-1.herokuapp.com/api/v1.0/tasks
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the created task for 
+  the authenticated user
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
+## License 📄
+[MIT](https://choosealicense.com/licenses/mit/)

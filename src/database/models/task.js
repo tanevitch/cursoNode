@@ -16,11 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   Task.init({
     name: {
       type:DataTypes.STRING,
-      allowNull: false,
     },
     creationDate: {
       type: DataTypes.DATE,
-      allowNull: false,
       defaultValue: new Date()
     },
     expirationDate: {
