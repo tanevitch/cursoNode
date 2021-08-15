@@ -166,5 +166,38 @@ Response:
   If you send the token, and it isn't valid, it responses "Invalid token" 
 ```
 
+**UPDATE**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ { 
+    "name": "Updated Task",
+ }
+ PUT https://entrega-node-1.herokuapp.com/api/v1.0/tasks/PUT_ID_HERE
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the updated task for 
+  the authenticated user
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
+**DELETE**
+
+Request (remember you have to send the x-access-token in the header):
+```javascript
+ DELETE https://entrega-node-1.herokuapp.com/api/v1.0/tasks/PUT_ID_HERE
+```
+
+Response:  
+ ```   
+  If you dont send the token, it responses "Token required"
+  If you send the token, and it is valid, you will get the list of all
+  tasks excepting the deleted
+  If you send the token, and it isn't valid, it responses "Invalid token" 
+```
+
 ## License 📄
 [MIT](https://choosealicense.com/licenses/mit/)
