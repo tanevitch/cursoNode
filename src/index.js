@@ -30,7 +30,7 @@ const init = () => {
   configApi(app);
   configRouter(app);
   configHeaders(app);
-  app.listen(PORT);
+  app.listen(PORT, () => console.log(`app listening on port ${PORT}!`));
 };
 
 init();
