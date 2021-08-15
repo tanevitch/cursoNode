@@ -12,8 +12,13 @@ const login = async (req, res) => {
   await model.User.findOne({
     where: { username: username },
   }).then((user) => {
-    if (!user | !bcrypt.compareSync(password, user.password)) {
-      return res.status(401).send({ message: 'Invalid credentials'});
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid credentials' });
+    }
+    const passwordIsValid = bcrypt.compareSync(password, user.password);
+
+    if (!passwordIsValid) {
+      return res.status(401).send({ message: 'Invalid credentials' });
     }
 
     const token = jwt.sign({ id: user.id }, 'clave123!', {
