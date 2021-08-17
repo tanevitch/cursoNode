@@ -4,7 +4,7 @@ var should = chai.should();
 
 var assert = require('assert');
 
-const API = 'https://entrega-node-1.herokuapp.com'
+const API = 'http://localhost:5001'
 chai.use(chaiHttp);
 
 describe("GET /users",function(){
@@ -12,7 +12,7 @@ describe("GET /users",function(){
   this.beforeEach('Get login token', (done) => {
     chai.request(API)
       .post('/auth/login')
-      .send({'username': 'marcoslopez','password': '123456'})
+      .send({'username': 'juanperez','password': '123456'})
       .end((err, res) => {
         res.should.have.status(200)
         token= res.body.token
@@ -62,7 +62,7 @@ describe("PUT /users/invalid_id",function(){
   this.beforeEach('Get login token', (done) => {
     chai.request(API)
       .post('/auth/login')
-      .send({'username': 'marcoslopez','password': '123456'})
+      .send({'username': 'juanperez','password': '123456'})
       .end((err, res) => {
         res.should.have.status(200)
         token= res.body.token
